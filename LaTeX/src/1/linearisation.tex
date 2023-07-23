@@ -1,0 +1,35 @@
+%//==============================--@--==============================//%
+\subsection[2.1 Linearização de Sistemas Não Lineares]{\hspace*{0.075 em}\raisebox{0.2 em}{$\pmb{\drsh}$} Linearização de Sistemas Não Lineares}
+\label{sec:linearisation}
+
+\noindent A aproximação linear de uma função é o \underline{polinómio de Taylor de primeira ordem} em torno do ponto de interesse. Em sistemas dinâmicos, é um método que permite (possivelmente) aferir a estabilidade local de pontos de equilíbrio de sistemas não lineares.
+
+{
+\mdfsetup{linewidth=2pt}
+
+\begin{mdframed}
+    \noindent Seja $\pmb{\dot{x}} = f(\pmb{x})$, não linear. A equação geral para a linearização de uma função multivariável $f(\pmb{x})$ num ponto $\pmb{p}$ é:
+    \vspace{-0.5em}
+    $$
+        f(\pmb{x}) \approx f(\pmb{p}) + \left.D f\right|_{\pmb{p}} \cdot (\pmb{x} - \pmb{p})
+    $$
+    
+    \noindent onde $\pmb{x}$ é o vetor de variáveis e $\pmb{p}$ o ponto de interesse para a linearização.
+\end{mdframed}
+}
+
+\begin{quote}
+    \noindent ``A good place to start analyzing the nonlinear system 
+    $$
+        \pmb{\dot{x}} = f(\pmb{x}) 
+    $$
+    is to determine its \underline{equilibrium points} and describe its behavior near [this points]. (...) the local behavior of the nonlinear system near a hyperbolic equilibrium point $\pmb{p}$ is qualitatively determined by the behavior of the linear system
+    $$
+        \pmb{\dot{x}} = \pmb{A}\,\pmb{x},
+    $$
+    with the matrix $\pmb{A} = Df(\pmb{p})$, near the origin. 
+    
+    The linear function $\pmb{A}\, \pmb{x} = Df(\pmb{p})\, \pmb{x}$ is called the \textit{linear part} of $f$ at $\pmb{p}$.''\cite{Perko2013}
+\end{quote}
+
+%//==============================--@--==============================//%

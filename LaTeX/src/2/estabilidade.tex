@@ -1,0 +1,146 @@
+%//==============================--@--==============================//%
+\subsection[2.2 Estabilidade]{\hspace*{0.075 em}\raisebox{0.2 em}{$\pmb{\drsh}$} Estabilidade}
+\label{sec:stability}
+
+\begin{theo}[\underline{Def.:} Estabilidade]{def:ft}\label{def:stability}
+    \noindent ``An LTI system is said to be stable if all the roots of the transfer function denominator polynomial have negative real parts (that is, they are all in the left hand s-plane), and is unstable otherwise."\cite{FranklinPowell2015}
+\end{theo}
+
+%//==============================--@--==============================//%
+\subsubsection[2.2.1 Bounded input Bounded output (BIBO)]{$\pmb{\rightarrow}$ Bounded input Bounded output (BIBO)}
+
+\noindent SLIT é BIBO (Bounded Input Bounded Output) estável: Qualquer sinal de entrada limitado conduz a um sinal de saída limitado. Considerando um SLIT com input $u(t)$ e output $y(t)$:
+
+$$
+    y(t) = \int_{-\infty}^{+\infty} h(\tau)u(t - \tau)d\tau
+$$
+\noindent Se $u(t)$ for $bounded$, de forma a que exista uma constante $M$ tal que $|u(t)| \leq M \leq \infty$, $y(t)$ será $bounded$ da seguinte forma:
+
+$$
+    \begin{aligned}
+        |y| &= \left|\int h u d\tau\right|\\
+        &\leq \int |h| |u| d\tau\;\; \rightarrow\;\; \text{desigualdade triangular}\\
+        &\leq M\int |h|d\tau < \infty
+    \end{aligned}
+$$
+
+\begin{theo}[\underline{Def.:} Estabilidade BIBO]{def:ft}\label{def:stability_BIBO}
+    \noindent ``The system with impulse response $h(t)$ is BIBO-stable
+if and only if the integral"\cite{FranklinPowell2015}
+
+    $$
+        \int |h|du < \infty
+    $$
+\end{theo}
+
+%//==============================--@--==============================//%
+\subsubsection[2.2.2 Estabilidade de um SLIT]{$\pmb{\rightarrow}$ Estabilidade de um SLIT}
+
+\noindent Um sistema SLIT é estável se e só se (condição necessária e suficiente) todos os termos da resposta no tempo tendam para zero enquanto $t \to \infty$.
+$$
+    e^{p_i t} \to 0,\;\, \text{para todos os $p_i$}
+$$
+
+\noindent Tal acontece se
+$$
+    \boxed{\text{Re}\{p_i\} < 0}
+$$
+
+\noindent ``This is called. internal stability. Therefore, \textbf{the stability of a system can be determined by computing the location of the roots} of the characteristic equation and determining whether they are all in the LHP."\cite{FranklinPowell2015} Logo, o eixo imaginário é uma barreira de estabilidade.
+
+\paragraph[2.2.2.1 Estabilidade Marginal]{$\pmb{\star}$ Estabilidade Marginal}\mbox{}\\
+
+\noindent Considerando o seguinte sistema que possui dois pólos puramente imaginários:
+$$
+    \dfrac{4}{s^2 + 4}\quad p_{1,2} = \pm j2
+$$
+
+\noindent A resposta ao degrau unitário deste sistema é:
+$$
+  y(t) = 1 - \cos{(2t)}
+$$
+
+\begin{itemize}
+    \item O sistema oscila indefinidamente, já que $\zeta = 0$.
+    \item O sistema é \textbf{marginalmente estável}: a resposta natural nem cresce nem se atenua, permanecendo constante ou oscilante, à medida que o tempo tende para o infinito.
+\end{itemize}
+
+\noindent Considerando agora o seguinte sistema que possui quatro pólos puramente imaginários repetidos:
+$$
+    \dfrac{16}{(s^2 + 4)^2}\quad p_{1,2} = \pm j2\quad p_{3,4} = \pm j2
+$$
+
+\noindent A resposta ao degrau unitário deste sistema é:
+$$
+  y(t) = 1 - \cos{(2t)} - t\sin{(2t)}
+$$
+
+\begin{itemize}
+    \item O sistema cresce sem \textit{bound} graças ao segundo termo da resposta natural do sistema $t\sin{(2t)}$.
+    \item O sistema é instável.
+    \item Múltiplos pólos imaginários repetidos no eixo imaginário pressupõe um sistema instável.
+\end{itemize}
+
+\paragraph[2.2.2.1 Critério de Routh-Hurwitz]{$\pmb{\star}$ Critério de Routh-Hurwitz}
+
+{
+\mdfsetup{linewidth=2pt}
+
+\begin{mdframed}
+\textbf{Critério de Hurwitz} uma condição necessária (mas não suficiente) de estabilidade de um SLIT causal é que todos os coeficientes do polinómio denominador da FT sejam positivos (ou tenham o mesmo sinal).
+\end{mdframed}
+}
+
+\noindent Esta condição é verficada por inspeção direta do polinómio característico do sistema.
+
+\newpage
+\noindent ``Once the elementary necessary conditions have been satisfied, we need a more powerful test. Routh’s formulation requires the computation of a \textbf{triangular array}".\cite{FranklinPowell2015} Supondo o seguinte polinómio característico de ordem $n$:
+
+$$
+    a(s) = s^n + a_1 s^{n - 1} + a_2 s^{n - 2} + \dots a_{n -1} s + a_n
+$$
+
+\noindent \textbf{1.} Para determinar a matriz de Routh, primeiro organizamos os coeficientes do polinómio característico em duas filas, começando com o primeiro e o segundo coeficiente2, seguidos dos coeficientes pares e ímpares:
+
+$$
+    \begin{aligned}
+        s^n&: 1,\;\; a_2\;\; a_4\;\; \dots\\
+        s^{n-1}&: a_1,\;\; a_3\;\; a_5\;\; \dots\\
+    \end{aligned}
+$$
+\noindent\textbf{2.} De seguida, adicionamos as linhas subsequentes (correspondentes aos restantes coeficientes) para completar a matriz de Routh. Calculamos os elementos das linhas $s^{n - 2}$ e das linhas $s^{n - 3}$ da seguinte forma:
+
+$$
+    \begin{aligned}
+        b_1 = -\dfrac{\begin{bmatrix}
+                        1 & a_2\\
+                        a_1 & a_3        
+                    \end{bmatrix}}{a_1} = \dfrac{a_1 a_2 - a_3}{a_1}\quad
+        c_1 = -\dfrac{\begin{bmatrix}
+                        a_1 & a_3\\
+                        b_1 & b_2        
+                    \end{bmatrix}}{b_1} = \dfrac{b_1 a_3 - a_1 b_2}{b_1}\\
+        b_2 = -\dfrac{\begin{bmatrix}
+                        1 & a_4\\
+                        a_1 & a_5        
+                    \end{bmatrix}}{a_1} = \dfrac{a_1 a_4 - a_5}{a_1}\quad
+        c_2 = -\dfrac{\begin{bmatrix}
+                        a_1 & a_5\\
+                        b_1 & b_3        
+                    \end{bmatrix}}{b_1} = \dfrac{b_1 a_5 - a_1 b_3}{b_1}\\
+        b_3 = -\dfrac{\begin{bmatrix}
+                        1 & a_6\\
+                        a_1 & a_7        
+                    \end{bmatrix}}{a_1} = \dfrac{a_1 a_6 - a_7}{a_1}\quad
+        c_3 = -\dfrac{\begin{bmatrix}
+                        a_1 & a_7\\
+                        b_1 & b_4        
+                    \end{bmatrix}}{b_1} = \dfrac{b_1 a_7 - a_1 b_4}{b_1}
+    \end{aligned}
+$$
+
+\noindent Note-se que os elementos das linhas subsequentes são formados a partir das duas linhas anteriores usando os determinantes da matrizes formadas pelos dois elementos da primeira coluna e os outros elementos das colunas sucessivas.
+
+\vspace{1 em}
+\noindent\textbf{3.} Por fim, verificamos se os elementos da primeira coluna são todos positivos. Se sim, então o sistema é estável, caso contrário, instável.
+%//==============================--@--==============================//%

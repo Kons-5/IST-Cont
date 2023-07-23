@@ -1,0 +1,171 @@
+%//==============================--@--==============================//%
+\newpage
+\subsection[3.3 Root Locus ]{\hspace*{0.075 em}\raisebox{0.2 em}{$\pmb{\drsh}$} Root Locus}
+
+\begin{theo}[\underline{Método Root Locus}]{def:ft}\label{def:root-locus}
+    \noindent ``The root locus is a graph of the roots of the characteristic polynomial as a function of a parameter, and the method gives insight into the effects of the controller parameter"\cite{medeiros:FSAISE}
+\end{theo}
+
+\noindent O \textit{root locus} garante uma caracterização da variação da localização dos pólos do sistema em função do ganho $K$, é um método gráfico que permite avaliar a localização dos pólos da f.t.c.f. sem fatorizar o polinómio denominador dessa f.t. Supondo a seguinte função de transferência e a respetiva função característica:
+
+$$
+    T(s) = \dfrac{KG(s)}{1 + KG(s)H(s)}\qquad
+    KG(s)H(s) = -1
+$$
+
+\noindent É possível enunciar duas condições essenciais através da equação característica do sistema:
+
+$$
+    |KG(s)H(s)| = 1\qquad
+    \arg(KG(s)H(s)) = (2k + 1)\pi\;\, k \in \mathbb{Z}
+$$
+
+\begin{itemize}
+    \item \textbf{Condição de módulo:} A condição de módulo permite calcular o valor de K correspondente a cada localização particular das raízes sobre o lugar geométrico.
+    \item \textbf{Condição de argumento:} A condição de argumento permite determinar os pontos do plano que pertencem ao \textit{root locus}.
+\end{itemize}
+
+\noindent Com base nestas duas condições, são enunciadas um conjunto de regras para construção do \textit{root locus}
+
+%//==============================--@--==============================//%
+\subsubsection[3.3.1 Regra 1 --- Número de ramos]{$\pmb{\rightarrow}$ Regra 1 --- Número de ramos}
+
+\noindent Supondo a seguinte função de transferência em cadeia aberta:
+
+$$
+    KG(s)H(s) = K\dfrac{N(s)}{D(s)}
+$$
+
+\noindent Assumindo a função de transferência como própria, o número de \textbf{ramos} --- lugar geométrico definido por um pólo do sistema em c.f. quando $K$ varia --- é igual ao número de pólos do sistema em cadeia fechada:
+
+$$
+    \boxed{D(s) + KN(s) = 0}
+$$
+%//==============================--@--==============================//%
+\subsubsection[3.3.2 Regra 2 --- Simetria]{$\pmb{\rightarrow}$ Regra 2 --- Simetria}
+
+\noindent Os pólos de sistemas realizáveis (sistemas físicos) são:
+
+\begin{itemize}
+    \item Reais.
+    \item Complexos, ocorrendo em pares conjugados.
+\end{itemize}
+
+\noindent Este último caso indica que o \textit{root locus} é \textbf{simétrico relativamente ao eixo real}.
+
+%//==============================--@--==============================//%
+\subsubsection[3.3.3 Regra 3 --- Troços sobre o eixo real]{$\pmb{\rightarrow}$ Regra 3 --- Troços sobre o eixo real}
+
+\noindent Para um ganho, $K$, positivo, são troços do \textit{root locus} os pontos do eixo real que tenham à sua direita um número ímpar de pólos e zeros da f.t.c.a. Neste sentido invocamos a condição de argumento:
+
+$$
+    \arg(KG(s)H(s)) = \sum_{i = 1}^{m}\arg(s + z_i) - \sum_{i = 1}^{m}\arg(s + p_i) = (2k + 1)\pi
+$$
+\noindent Por interpretação direta da expressão acima, reconhecemos que:
+\begin{itemize}
+    \item Pólos e zeros (f.t.c.a.) à esquerda de s1 contribuem com 0º.
+    \item Pólos e zeros (f.t.c.a.) à direita de s1 contribuem com 180º.
+    \item A contribuição de um par de pólos e ou de zeros complexos conjugados é nula (``since they contribute no net angle to the real axis").
+\end{itemize}
+
+%//==============================--@--==============================//%
+\subsubsection[3.3.4 Regra 4 --- Ponto de partida dos ramos]{$\pmb{\rightarrow}$ Regra 4 --- Ponto de partida dos ramos}
+
+\noindent O ponto de partida de cada ramo do \textit{root locus} pressupõe que $K = 0$. Neste sentido, avaliando a expressão já previamente abordada na regra 1:
+
+$$
+   \begin{aligned}
+       D(s) + KN(s) &= 0,\;\, K \to 0^+\\[4pt]
+       \Aboxed{D(s) &= 0}
+   \end{aligned}
+$$
+
+\noindent Os pontos de partida dos ramos do root-locus coincidem com os pólos da f.t.c.a.
+
+%//==============================--@--==============================//%
+\subsubsection[3.3.5 Regra 5 --- Ponto de chegada dos ramos]{$\pmb{\rightarrow}$ Regra 5 --- Ponto de chegada dos ramos}
+
+\noindent O ponto de chegada de cada ramo do \textit{root locus} pressupõe que $K \to \infty$. Fazendo uso da condição de magnitude:
+
+{
+\mdfsetup{linewidth=2pt}
+
+\begin{mdframed}
+    \noindent Quando $K \to \infty$ é necessário que $G(s)H(s) \to 0$ para que $1 + KG(s)H(s) = 0$
+\end{mdframed}
+}
+
+\noindent Verificam-se assim duas situações:
+\begin{itemize}
+    \item $s \to \{\text{zeros de } N(s)\}$ --- m ramos tendem para os zeros da f.t.c.a.
+    \item $s \to \infty$ --- n-m ramos tendem para $\infty$, se o denominador possuir mais pólos que zeros.
+\end{itemize}
+
+%//==============================--@--==============================//%
+\subsubsection[3.3.6 Regra 6 --- Pontos de entrada e de saída do eixo real]{$\pmb{\rightarrow}$ Regra 6 --- Pontos de entrada e de saída do eixo real}
+
+\noindent Para encontrar o ponto onde o \textit{root locus} se afasta do eixo real (ou converge para o eixo real), observamos que tal ocorre sempre que duas (ou mais) raízes se intersectam.  É um facto bem conhecido que, quando um polinómio tem várias raízes, não só o valor do polinómio é zero, como a sua derivada também o é.
+
+\vspace{1 em}
+\noindent Nos pontos de saída (e de entrada), a derivada da equação característica é zero, onde:
+\begin{itemize}
+    \item O ponto de saída do eixo real ocorre para um máximo relativo do ganho.
+    \item O ponto de entrada no eixo real ocorre para um mínimo relativo do ganho
+\end{itemize}
+
+$$
+    \begin{aligned}
+        \dfrac{d}{ds}\left(1 + K\dfrac{N(s)}{D(s)}\right) = 0\qquad
+        &K \left(\dfrac{N(s)'D(s) - N(s)D(s)'}{D(s)^2}\right) = 0\\[6pt]
+        \Aboxed{N(s)'D(s) &- N(s)D(s)' = 0}
+    \end{aligned}
+$$
+
+\noindent\textbf{Nota:} Nem todas as soluções desta equação são sempre pontos de saída ou de entrada no eixo real, é preciso confirmar se as soluções encontradas estão sobre troços que pertencem ao \textit{root locus}
+
+%//==============================--@--==============================//%
+\subsubsection[3.3.7 Regra 7 --- Ângulos de partida e de chegada ao eixo real]{$\pmb{\rightarrow}$ Regra 7 --- Ângulos de partida e de chegada ao eixo real}
+
+\noindent De forma sucinta, O ângulo entre dois ramos adjacentes que se aproximam (ou que se afastam) do mesmo ponto do eixo real é dado por:
+
+$$
+    \boxed{\sigma = \dfrac{2\pi}{\alpha}}
+$$
+
+\noindent O ângulo entre dois ramos adjacentes, um chegando e outro partindo do mesmo ponto do eixo real é dado por:
+
+$$
+    \boxed{\sigma = \dfrac{\pi}{\alpha}}
+$$
+
+\noindent Onde $\alpha$ é o número de ramos que se cruzam num ponto do eixo real.
+%//==============================--@--==============================//%
+\subsubsection[3.3.8 Regra 8 --- Comportamento Assintótico]{$\pmb{\rightarrow}$ Regra 8 --- Comportamento Assintótico}
+
+\noindent Quando $K \to \infty$ existem $n - m$ ramos que tendem para infinito ao longo de assíntotas. Estas assíntotas cruzam-se no ponto do eixo real (centro assíntótico) segundo:
+
+$$
+    \boxed{\dfrac{\sum \text{pólos de }G(s)H(s) - \sum \text{zeros de }G(s)H(s)}{n - m}}
+$$
+
+\noindent O ângulo de partida com o eixo real é dado por:
+$$
+    \boxed{\Phi_a = \dfrac{\pm (2k + 1)\pi}{n - m},\;\, k = 0,1,2,\dots n-m-1}
+$$
+%//==============================--@--==============================//%
+\subsubsection[3.3.9 Regra 9 --- Soma dos pólos]{$\pmb{\rightarrow}$ Regra 9 --- Soma dos pólos}
+
+\noindent Supondo a seguinte  f.t.c.a:
+
+$$
+    G(s)H(s) = \dfrac{N(s)}{D(s)}
+$$
+
+\noindent Se $n - m \ge 2$ então:
+
+$$
+    \boxed{\sum \text{pólos da f.t.c.a} = \sum \text{pólos da f.t.c.f.}}
+$$
+
+\noindent\textbf{Nota:} Esta propriedade tem particular interesse para deduzir pólos da f.t.c.f e vice-versa.
+%//==============================--@--==============================//%
